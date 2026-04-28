@@ -10,7 +10,11 @@ const PORT = process.env.PORT || 5000;
 
 // ==================== MIDDLEWARE ====================
 app.use(cors({
-  origin: [process.env.APP_URL || 'http://localhost:3000', 'http://localhost:3001'],
+  origin: [
+    process.env.APP_URL || 'http://localhost:3000', 
+    'http://localhost:3001',
+    'https://umkm-platform-six.vercel.app' // TAMBAHKAN LINK INI
+  ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization'],
