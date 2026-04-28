@@ -7,11 +7,12 @@ const sequelize = process.env.DATABASE_URL
       dialect: 'postgres',
       protocol: 'postgres',
       dialectOptions: {
-        ssl: {
-          require: true,
-          rejectUnauthorized: false // Penting agar tidak error SSL di Windows/Render
-        }
-      },
+  ssl: {
+    require: true,
+    rejectUnauthorized: false, // Tetap gunakan ini untuk Neon
+    sslmode: 'verify-full'     // Tambahkan ini untuk menghilangkan Warning di log
+  }
+},
       logging: false,
     })
   : new Sequelize(
