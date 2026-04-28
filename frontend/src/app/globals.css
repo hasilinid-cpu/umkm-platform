@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary: #EA580C;
+  --primary-dark: #C2410C;
+  --secondary: #D97706;
+  --accent: #16A34A;
+  --navy: #1E3A5F;
+  --dark: #0F172A;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-orange-600 hover:bg-orange-700 text-white font-semibold px-6 py-3 rounded-xl
+           transition-all duration-200 shadow-md hover:shadow-lg active:scale-95
+           disabled:opacity-60 disabled:cursor-not-allowed inline-flex items-center gap-2;
+  }
+  .btn-secondary {
+    @apply bg-white hover:bg-slate-50 text-slate-800 font-semibold px-6 py-3 rounded-xl
+           border border-slate-200 transition-all duration-200 shadow-sm hover:shadow-md
+           active:scale-95 inline-flex items-center gap-2;
+  }
+  .btn-outline {
+    @apply border-2 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white
+           font-semibold px-6 py-3 rounded-xl transition-all duration-200 active:scale-95
+           inline-flex items-center gap-2;
+  }
+  .card {
+    @apply bg-white rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden;
+  }
+  .card-hover {
+    @apply hover:-translate-y-1;
+  }
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-slate-200 bg-white
+           focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent
+           transition-all duration-200 text-slate-800 placeholder-slate-400 text-sm;
+  }
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+  }
+  .badge-free { @apply badge bg-green-100 text-green-700; }
+  .badge-premium { @apply badge bg-amber-100 text-amber-700; }
+  .badge-new { @apply badge bg-blue-100 text-blue-700; }
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-slate-900 font-display leading-tight;
+  }
+  .section-subtitle {
+    @apply text-slate-500 text-lg mt-3 leading-relaxed;
+  }
+  .gradient-text {
+    @apply bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 bg-clip-text text-transparent;
+  }
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer;
+  }
+  .sidebar-link-active {
+    @apply sidebar-link bg-orange-600 text-white shadow-md;
+  }
+  .sidebar-link-inactive {
+    @apply sidebar-link text-slate-600 hover:bg-orange-50 hover:text-orange-700;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* Animations */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Custom number input */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
