@@ -58,17 +58,17 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, message: 'Terjadi kesalahan internal server' });
 });
 
-// ==================== START ====================
-const startServer = async () => {
-  await connectDB();
-  app.listen(PORT, () => {
-    console.log(`\n🚀 UMKM Penggerak Indonesia API`);
-    console.log(`📡 Server: http://localhost:${PORT}`);
-    console.log(`🌍 Environment: ${process.env.NODE_ENV}`);
-    console.log(`📚 Docs: http://localhost:${PORT}/health\n`);
-  });
-};
+// Jalankan koneksi database secara asinkron tanpa membungkus app.listen untuk Vercel
+connectDB().catch(err => {
+    console.error('Gagal koneksi database awal:', err);
+});
 
-startServer();
+// Hanya jalankan app.listen jika TIDAK di Vercel (Lokal/Development)
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`🚀 Server running on http://localhost:${PORT}`);
+    });
+}
 
+// WAJIB: Export app untuk Vercel
 module.exports = app;
